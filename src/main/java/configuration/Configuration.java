@@ -44,7 +44,7 @@ public enum Configuration {
         } catch (NumberFormatException nfe) {
             System.out.println("Ein oder mehrere Parameter konnten nicht übergeben werden. Überprüfen Sie ihre Eingaben!");
             System.out.println("Beispielhafte Eingabe:");
-            System.out.println("-data frozen_lake.txt -cycles 10000 -alpha 0.8 -gamma 0.95");
+            System.out.println("-data frozen_lake.txt -cycles 100 -alpha 0.8 -gamma 0.95");
             System.exit(1);
         }
     }
@@ -56,6 +56,11 @@ public enum Configuration {
     }
 
     public String[] getConfiguration() {
-        return new String[]{ "Lakefile: " + this.data, "Height: " + this.lakeHeight, "Width: " + this.lakeWidth, "Cycles: " + cycles, "Alpha: " + alpha, "Gamma: " + gamma };
+        return new String[]{ String.format("%-9s", "Lakefile") + ": " + this.data,
+                String.format("%-9s", "Height") + ": " + this.lakeHeight,
+                String.format("%-9s", "Width") + ": " + this.lakeWidth,
+                String.format("%-9s", "Cycles") + ": " + cycles,
+                String.format("%-9s", "Alpha") + ": " + alpha,
+                String.format("%-9s", "Gamma") + ": " + gamma };
     }
 }
