@@ -17,7 +17,7 @@ public enum Configuration {
     public int lakeHeight = 4;
     public int lakeWidth = 4;
     public int states = lakeHeight * lakeWidth;
-    public int cycles = 10000;
+    public int cycles = 100;
     public double alpha = 0.8;
     public double gamma = 0.95;
 
