@@ -93,6 +93,7 @@ public class FrozenLake {
     private double calculateMaxQ(int state) {
         int[] possibleActions = getActionsByState(state);
         double max = Double.MIN_VALUE;
+        // check each possible action for there q-value and set the new max value if the q-value is higher than the current max
         for (int nextAction : possibleActions) {
             double value = Q[state][nextAction];
             if (value > max) {
@@ -106,6 +107,7 @@ public class FrozenLake {
     private int[] getActionsByState(int state) {
         ArrayList<Integer> possibleActions = new ArrayList<>();
         for (int i = 0; i < Configuration.instance.states; i++) {
+            // check if the reward of the field is not the reward of a hole and add it as possible action
             if (R[state][i] != Field.HOLE.getReward()) {
                 possibleActions.add(i);
             }
@@ -119,6 +121,7 @@ public class FrozenLake {
         int nextMovement = state;
         double max = Double.MIN_VALUE;
 
+        // get for each possible State the q-value and compare it to the current best value (max)
         for (int possibleState : possibleActions) {
             double value = Q[state][possibleState];
             if (value > max) {

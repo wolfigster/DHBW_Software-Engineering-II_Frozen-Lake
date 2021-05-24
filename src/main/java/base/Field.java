@@ -37,6 +37,7 @@ public enum Field {
         return reward;
     }
 
+    // method to get a field by it's label
     public static Field getFieldByLabel(char label) {
         return FIELDS.get(label);
     }

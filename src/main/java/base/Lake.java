@@ -44,15 +44,6 @@ public class Lake {
         return lake;
     }
 
-    public void printLake() {
-        for (int y = 0; y < Configuration.instance.lakeHeight; y++) {
-            for (int x = 0; x < Configuration.instance.lakeWidth; x++) {
-                System.out.print(lake[y][x].getLabel() + " ");
-            }
-            System.out.println();
-        }
-    }
-
     // method to return lake as one dimensional array to write it to the log file
     public String[] getLakeAsStringArray() {
         String[] lakeString = new String[Configuration.instance.lakeHeight];
