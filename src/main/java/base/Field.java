@@ -3,10 +3,11 @@ package base;
 import java.util.HashMap;
 
 public enum Field {
-    START("Start", 'S', -1),
+    START("Start", 'S', 0),
     HOLE("Hole", 'H', -1),
     FIELD("Field", 'F', 0),
-    GOAL("Goal", 'G', 1);
+    GOAL("Goal", 'G', 1),
+    WAY("Way", 'X', -1);
 
     private static final HashMap<Character, Field> FIELDS = new HashMap<>();
     private final String name;
