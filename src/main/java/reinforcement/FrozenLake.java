@@ -215,9 +215,10 @@ public class FrozenLake {
             int y = state - x * Configuration.instance.lakeWidth;
             lake[x][y] = Field.WAY;
 
-            state = getNextMovement(state);
             way.append(String.format(" -> %3s ", state));
+            state = getNextMovement(state);
         } while (state != Configuration.instance.states-1);
+        way.append(String.format(" -> %3s ", state));
         String[] wayString = new String[Configuration.instance.lakeHeight];
 
         LogEngine.instance.write(way.toString());
