@@ -32,8 +32,8 @@ public class Application {
         // start the algorithms
         frozenLake.calculateReward();
         frozenLake.calculateQ();
-        frozenLake.writeSelectedStates();
         frozenLake.writeSelectedTable();
+        frozenLake.writeSelectedWay();
 
         LogEngine.instance.write("Finished\n");
         LogEngine.instance.close();

@@ -193,18 +193,6 @@ public class FrozenLake {
         LogEngine.instance.spacer();
     }
 
-    // method to log the selected way across the lake
-    public void writeSelectedStates() {
-        int state = 0;
-        StringBuilder way = new StringBuilder("Way across the frozen lake: " + String.format(" %3s ", state));
-        do  {
-            state = getNextMovement(state);
-            way.append(String.format(" -> %3s ", state));
-        } while (state != Configuration.instance.states-1);
-        LogEngine.instance.write(way.toString());
-        LogEngine.instance.spacer();
-    }
-
     // method to log next state of all states
     public void writeSelectedTable() {
         LogEngine.instance.write("State-Table:");
@@ -213,5 +201,34 @@ public class FrozenLake {
             int nextState = getNextMovement(state);
             LogEngine.instance.write(String.format("%5s -> %4s", state, nextState));
         }
+    }
+
+    // method to log the way across the lake
+    public void writeSelectedWay() {
+        LogEngine.instance.spacer();
+        int state = 0;
+        StringBuilder way = new StringBuilder("Way across the frozen lake: " + String.format(" %3s ", state));
+        Field[][]lake = LAKE;
+        state = getNextMovement(state);
+        do {
+            int x = state / Configuration.instance.lakeWidth;
+            int y = state - x * Configuration.instance.lakeWidth;
+            lake[x][y] = Field.WAY;
+
+            state = getNextMovement(state);
+            way.append(String.format(" -> %3s ", state));
+        } while (state != Configuration.instance.states-1);
+        String[] wayString = new String[Configuration.instance.lakeHeight];
+
+        LogEngine.instance.write(way.toString());
+
+        for (int y = 0; y < Configuration.instance.lakeHeight; y++) {
+            wayString[y] = "";
+            for (int x = 0; x < Configuration.instance.lakeWidth; x++) {
+                wayString[y] += lake[y][x].getLabel() + " ";
+            }
+            LogEngine.instance.write(wayString[y]);
+        }
+        LogEngine.instance.spacer();
     }
 }
