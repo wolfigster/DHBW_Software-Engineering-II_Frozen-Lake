@@ -19,41 +19,41 @@ public class FrozenLake {
     // method to fill the reward table
     public void calculateReward() {
         for (int i = 0; i < Configuration.instance.states; i++) {
-            int n = i / Configuration.instance.lakeWidth;
-            int m = i - n * Configuration.instance.lakeWidth;
+            int x = i / Configuration.instance.lakeWidth;
+            int y = i - x * Configuration.instance.lakeWidth;
 
             // set complete row to the worst reward
             for (int k = 0; k < Configuration.instance.states; k++) R[i][k] = Field.HOLE.getReward();
 
             // try to move in each direction
-            if (LAKE[n][m] != Field.GOAL) {
+            if (LAKE[x][y] != Field.GOAL) {
                 // check the field on the left
-                int checkLeft = m - 1;
+                int checkLeft = y - 1;
                 if (checkLeft > -1) {
                     // get the current column and set the reward
-                    int t = n * Configuration.instance.lakeWidth + checkLeft;
-                    R[i][t] = LAKE[n][checkLeft].getReward();
+                    int t = x * Configuration.instance.lakeWidth + checkLeft;
+                    R[i][t] = LAKE[x][checkLeft].getReward();
                 }
                 // check the field on the right
-                int checkRight = m + 1;
+                int checkRight = y + 1;
                 if (checkRight < Configuration.instance.lakeWidth) {
                     // get the current column and set the reward
-                    int t = n * Configuration.instance.lakeWidth + checkRight;
-                    R[i][t] = LAKE[n][checkRight].getReward();
+                    int t = x * Configuration.instance.lakeWidth + checkRight;
+                    R[i][t] = LAKE[x][checkRight].getReward();
                 }
                 // check the field above
-                int checkUp = n - 1;
+                int checkUp = x - 1;
                 if (checkUp > -1) {
                     // get the current row and set the reward
-                    int t = checkUp * Configuration.instance.lakeWidth + m;
-                    R[i][t] = LAKE[checkUp][m].getReward();
+                    int t = checkUp * Configuration.instance.lakeWidth + y;
+                    R[i][t] = LAKE[checkUp][y].getReward();
                 }
                 // check the field below
-                int checkDown = n + 1;
+                int checkDown = x + 1;
                 if (checkDown < Configuration.instance.lakeHeight) {
                     // get the current row and set the reward
-                    int t = checkDown * Configuration.instance.lakeWidth + m;
-                    R[i][t] = LAKE[checkDown][m].getReward();
+                    int t = checkDown * Configuration.instance.lakeWidth + y;
+                    R[i][t] = LAKE[checkDown][y].getReward();
                 }
             }
         }
